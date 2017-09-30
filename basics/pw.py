@@ -4,9 +4,16 @@
 import sys
 import pyperclip
 
-PASSWORDS = {'email': 'my_email',
-             'blog': 'my_blog',
-             'suitcase': '12345'}
+PASSWORDS = {
+	'gh': {
+		'password': 'REDACTED',
+		'name': 'Github'
+	},
+	'bb': {
+		'password': 'REDACTED',
+		'name': 'Work Bitbucket'
+	}
+}
 
 if len(sys.argv) < 2:
     print('Usage: python pw.py [account] - copies account password')
@@ -15,7 +22,7 @@ if len(sys.argv) < 2:
 account = sys.argv[1]  # first command line arg is the account name
 
 if account in PASSWORDS:
-    pyperclip.copy(PASSWORDS[account])
-    print('Password for ' + account + ' copied to clipboard.')
+    pyperclip.copy(PASSWORDS[account]['password'])
+    print('Password for ' + PASSWORDS[account]['name'] + ' copied to clipboard.')
 else:
-    print('No account for ' + account + ' found.')
+    print('No account for ' + PASSWORDS[account]['name'] + ' found.')
